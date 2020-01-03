@@ -26,7 +26,7 @@ namespace Unified.Mqtt.Pattern.Test
             return true;
         }
 
-        public int GetHashCode([DisallowNull] T[] obj)
+        public int GetHashCode(T[] obj)
         {
             throw new NotImplementedException();
         }
