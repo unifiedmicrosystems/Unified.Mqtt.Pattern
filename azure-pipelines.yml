@@ -1,19 +1,88 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
+  branches:
+      include:
+      - master
+      - release
+pr:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
+
+variables:
+  BuildConfiguration: Release
+  Projects: '**/*.csproj'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '2.2.203'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: CmdLine@2
+  displayName: 'Install DNT'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    script: 'npm i -g dotnettools'
+
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '2.2.203'
+
+- task: CmdLine@2
+  displayName: 'Install DNT'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    script: 'npm i -g dotnettools'
+
+- task: CmdLine@2
+  displayName: 'Update project version patch'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    script: 'dnt bump-versions patch'
+    failOnStderr: true
+
+-  task: CmdLine@2
+  displayName: 'Patch project version preview'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    script: 'dnt bump-versions preview "$(Build.BuildNumber)"'
+    failOnStderr: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build solution'
+  inputs:
+    command: 'build'
+    projects: '$(Projects)'
+    arguments: '--configuration $(BuildConfiguration)'
+    feedsToUse: 'select'
+    versioningScheme: 'off'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run tests'
+  inputs:
+    command: 'test'
+    projects: '$(Projects)'
+    arguments: '--configuration $(BuildConfiguration) --collect "Code Coverage"'
+    publishTestResults: true
+    feedsToUse: 'select'
+    versioningScheme: 'off'
+
+- task: CopyFiles@2
+  displayName: 'Copy packages'
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+  inputs:
+    Contents: '**/*.nupkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts'
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
