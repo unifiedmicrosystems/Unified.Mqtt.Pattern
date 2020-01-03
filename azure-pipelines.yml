@@ -8,7 +8,7 @@ pr:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 variables:
   BuildConfiguration: Release
@@ -20,14 +20,14 @@ steps:
   displayName: 'Install .NET Core SDK'
   inputs:
     packageType: 'sdk'
-    version: '2.x'
+    version: '2.2.203'
 
 # Patch preview project versions (only when on master branch)
 - task: CmdLine@2
   displayName: 'Install DNT'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
-    script: 'sudo npm i -g dotnettools'
+    script: 'npm i -g dotnettools'
 - task: CmdLine@2
   displayName: 'Update project version patch'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
