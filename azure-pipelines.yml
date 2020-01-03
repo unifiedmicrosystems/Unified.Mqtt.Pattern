@@ -20,7 +20,7 @@ steps:
   displayName: 'Install .NET Core SDK'
   inputs:
     packageType: 'sdk'
-    version: '2.2.203'
+    version: '2.x'
 
 # Patch preview project versions (only when on master branch)
 - task: CmdLine@2
@@ -32,13 +32,13 @@ steps:
   displayName: 'Update project version patch'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
-    script: 'sudo dnt bump-versions patch'
+    script: 'dnt bump-versions patch'
     failOnStderr: true
 - task: CmdLine@2
   displayName: 'Patch project version preview'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
-    script: 'sudo dnt bump-versions preview "$(Build.BuildNumber)"'
+    script: 'dnt bump-versions preview "$(Build.BuildNumber)"'
     failOnStderr: true
 
 # Build and test
