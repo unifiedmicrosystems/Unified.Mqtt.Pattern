@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Unified.Mqtt.Pattern</id>
+    <version>1.0.1-20200104.12</version>
+    <authors>Christopher Morley</authors>
+    <owners>Christopher Morley</owners>
+	<license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<iconUrl>https://www.unifiedmicro.systems/resources/unified-logo.png</iconUrl>
+    <projectUrl>https://github.com/unifiedmicrosystems/Unified.Mqtt.Pattern</projectUrl>
+    <description>C# port of RangerMauve's mqtt-pattern fast library for matching MQTT patterns with named wildcards to extract data from topics.</description>
+    <repository type="github.com" url="https://github.com/unifiedmicrosystems/Unified.Mqtt.Pattern" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+	<tags>mqtt regex validation</tags>
+  </metadata>
+</package>

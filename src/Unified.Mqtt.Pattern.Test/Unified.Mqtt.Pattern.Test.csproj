@@ -17,7 +17,9 @@
 
     <RepositoryType>github.com</RepositoryType>
 
-    <PackageIconUrl></PackageIconUrl>
+    <PackageIconUrl>https://www.unifiedmicro.systems/resources/unified-logo.png</PackageIconUrl>
+
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +30,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Unified.Mqtt.Pattern\Unified.Mqtt.Pattern.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
