@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <Authors>Christopher Morley</Authors>
+
+    <Company>Unified Microsystems</Company>
+
+    <Description>Tests for Unified.Mqtt.Pattern</Description>
+
+    <PackageProjectUrl>https://github.com/unifiedmicrosystems/Unified.Mqtt.Pattern</PackageProjectUrl>
+
+    <RepositoryUrl>https://github.com/unifiedmicrosystems/Unified.Mqtt.Pattern</RepositoryUrl>
+
+    <RepositoryType>github.com</RepositoryType>
+
+    <PackageIconUrl></PackageIconUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Unified.Mqtt.Pattern\Unified.Mqtt.Pattern.csproj" />
+  </ItemGroup>
+
+</Project>
