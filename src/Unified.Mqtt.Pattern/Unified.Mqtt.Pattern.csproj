@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Christopher Morley</Authors>
     <Company>Unified Microsystems</Company>
     <Copyright />
+    <PackageId>Unified.Mqtt.Pattern</PackageId>
     <Description>C# port of RangerMauve's mqtt-pattern fast library for matching MQTT patterns with named wildcards to extract data from topics.</Description>
     <RepositoryUrl>https://github.com/unifiedmicrosystems/Unified.Mqtt.Pattern</RepositoryUrl>
     <PackageProjectUrl>https://github.com/unifiedmicrosystems/Unified.Mqtt.Pattern</PackageProjectUrl>
