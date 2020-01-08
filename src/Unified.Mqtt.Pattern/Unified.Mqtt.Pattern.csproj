@@ -20,7 +20,7 @@
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
-      <VersionPrefix>1.0.0</VersionPrefix>
+      <VersionPrefix>1.0.1</VersionPrefix>
     </None>
   </ItemGroup>
 
