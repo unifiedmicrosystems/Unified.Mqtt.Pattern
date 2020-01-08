@@ -88,13 +88,7 @@ stages:
         command: 'push'
         packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
         nuGetFeedType: 'internal'
-<<<<<<< HEAD
         publishVstsFeed: 'Unified.Mqtt.Pattern/Unified.Mqtt.Pattern-Test'
-=======
-        publishVstsFeed: 'Unified.Mqtt.Pattern-Master'
->>>>>>> parent of 1cc0398... Update azure-pipelines.yml for Azure Pipelines
-
-
         
 - stage: 'PublishReleaseNuGetPackage'
   displayName: 'Publish Release NuGet Package'
