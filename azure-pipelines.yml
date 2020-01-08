@@ -88,7 +88,7 @@ stages:
         command: 'push'
         packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
         nuGetFeedType: 'internal'
-        publishVstsFeed: 'Test'
+        publishVstsFeed: 'Unified.Mqtt.Pattern-Master'
 
 
         
