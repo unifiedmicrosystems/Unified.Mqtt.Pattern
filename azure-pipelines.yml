@@ -111,4 +111,4 @@ stages:
              command: 'push'
              packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
              nuGetFeedType: 'external'
-             publishFeedCredentials: 'NuGet'
+             publishFeedCredentials: 'NuGet Unified.Mqtt.Pattern'
