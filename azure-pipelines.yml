@@ -11,6 +11,7 @@ stages:
 - stage: 'Build'
   variables:
     buildConfiguration: 'Release'
+    name: $(BuildDefinitionName)-$(Rev:.r)
 
   jobs:
   - job:
