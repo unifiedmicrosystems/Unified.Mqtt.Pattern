@@ -3,6 +3,13 @@
 # YAML schema reference:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema
 
+name: $(Major).$(Minor).$(Rev:r)
+
+variables:
+  Major: 1
+  Minor: 0
+
+
 trigger:
 - master
 
@@ -11,7 +18,6 @@ stages:
 - stage: 'Build'
   variables:
     buildConfiguration: 'Release'
-    name: $(BuildDefinitionName)-$(Rev:.r)
 
   jobs:
   - job:
